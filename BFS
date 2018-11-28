@@ -1,0 +1,41 @@
+//BFS Algorithm implementaion
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Graph{
+  
+  private int v; //num for vertices.
+  private LinkedList<Integer>[] adj; //Adjacency list.
+  
+  public Graph(int i){
+    this.v = i;
+    adj = new LinkedList[v];
+    for(int k = 0; k < v ; k++)
+      adj[k] = new LinkedList<Integer>();
+  }
+  
+  public void addEdge(int v, int w){
+    adj[v].add(w);
+  }
+ 
+  public int[] bfs(int u){
+    int[] distances = new int[v]; 
+    //Mark all vertices as unvisited except of ours.
+    for(int i = 0; i < v; i++)
+      distances[i] = -1;
+     distances[u] = 0;
+     
+     Queue<Integer> queue = new LinkedList<Integer>();
+     queue.add(u);
+     while(!queue.isEmpty()){
+      int curr = queue.remove();
+      for(Integer i : adj[curr]){
+          queue.add(i);
+          if(distances[i] == -1) distances[i] = distances[curr] + 1;
+      }
+      
+     }
+    return distances;
+  }
+}
