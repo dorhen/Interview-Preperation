@@ -21,11 +21,11 @@ class HeapSort{
   
   public void heapsort(int[] arr, int size){
     //Build max-heap
-    for(int i = size/2 - 1; i >= 0; i++)
+    for(int i = size/2 - 1; i >= 0; i--)
       heapify(arr,size,i);
      
      //The actual sort.
-     for(int i = size ; i >=0 ; i++){
+     for(int i = size ; i >=0 ; i--){
       int temp = arr[i];
       arr[i] = arr[0];
       arr[0] = temp;
