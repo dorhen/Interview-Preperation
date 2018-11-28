@@ -1,0 +1,36 @@
+//Heap sort
+
+class HeapSort{
+
+  public void heapify(int[] arr, int size, int i){
+    int left = 2*i + 1;
+    int right = 2*i + 2;
+    int maximum = i;
+    if(arr[left] > arr[maximum] && left < size)
+      maximum = left;
+    if(arr[right] > arr[maximum] && right < size)
+      maximum = right;
+    
+    if(maximum != i){//Meaning we swap and need to fix the son
+      int temp = arr[maximum];
+      arr[maximum] = arr[i];
+      arr[i] = temp;
+      heapify(arr,size,maximum);
+    }
+  }
+  
+  public void heapsort(int[] arr, int size){
+    //Build max-heap
+    for(int i = size/2 - 1; i >= 0; i++)
+      heapify(arr,size,i);
+     
+     //The actual sort.
+     for(int i = size ; i >=0 ; i++){
+      int temp = arr[i];
+      arr[i] = arr[0];
+      arr[0] = temp;
+      heapify(arr, i, 0);
+      
+     }
+  }
+}
