@@ -1,0 +1,40 @@
+//Topological sort implementation
+
+import java.util.*;
+class Graph{
+  
+  private int v; //num for vertices.
+  private LinkedList<Integer>[] adj; //Adjacency list.
+  
+  public Graph(int i){
+    this.v = i;
+    adj = new LinkedList[v];
+    for(int k = 0; k < v ; k++)
+      adj[k] = new LinkedList<Integer>();
+  }
+  
+  public void addEdge(int v, int w){
+    adj[v].add(w);
+  }
+  
+  public void topologicalSort(){
+      boolean[] visited = new boolean[v];
+      Stack<Integer> st = new Stack<>();
+      for(int i = 0; i < v; i++)
+        if(!visited[i])
+          topologicalSort(i,visited,st);  
+      System.out.print("(");
+      while(!st.isEmpty())
+        System.out.print(st.pop() + ", ");
+      System.out.print(")");
+    }
+    
+    public void topologicalSort(int u, boolean[] arr, Stack<Integer> stack){
+      arr[u] = true;
+      for(Integer v : adj[u]){
+        if(!arr[v])
+          topologicalSort(v,arr,stack);
+      }
+      stack.push(u);
+    }
+}
