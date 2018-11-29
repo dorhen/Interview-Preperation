@@ -1,23 +1,26 @@
-//BFS-traversal algorithm
+//DFS-traversal algorithm
 
 class Graph{
   private int v;
   private LinkedList<Integer> adj[];
   public Graph(int a){
     v = a;
-    adj = new LinkedList<Integer>[v];
+    adj = new LinkedList[v];
     for(int i = 0; i < v; i++)
       adj[i] = new LinkedList<Integer>();
   }
   
-  public addEdge(int v, int u){
+  public void addEdge(int v, int u){
     adj[u].add(v);
     adj[v].add(u);
   }
   
   public void dfs(int v){
-    boolean[] visited = new boolean[];
+    boolean[] visited = new boolean[this.v];
     dfs(v,visited);
+    
+    for(int i = 0; i < visited.length ; i++)
+    	if(visited[i]) System.out.print(i+",");
   }
   
   private void dfs(int v, boolean[] arr){
@@ -28,5 +31,3 @@ class Graph{
         dfs(i, arr);
     }
   }
-  
-}
