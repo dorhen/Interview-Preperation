@@ -1,0 +1,50 @@
+import java.util.*;
+import java.io.*;
+
+class Birds{
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        int num = in.nextInt();
+        for(int i = 0; i < num; i++) {
+        	int n = in.nextInt();
+            int m = in.nextInt();
+            in.nextLine();
+        	String s = in.nextLine();
+        	System.out.println(maxKSum(s,m,n));
+        }
+        
+    }
+    
+    public static int maxKSum(String s, int k, int size){
+        int[] arr = new int[size];
+        String num;
+        for(int i = 0; i < size - 1 ; i++) {
+            num = s.substring(0, s.indexOf(' '));
+        	s = s.substring(s.indexOf(' ')+1);
+        	arr[i] = Integer.parseInt(num);
+        }
+        if(s.contains(" "))s = s.substring(0, s.indexOf(' '));
+        arr[size-1] = Integer.parseInt(s);
+        int maxSum = 0;
+        int currSum = 0;
+        if(k >= arr.length){
+           k = arr.length;
+           for(int i = 0; i < k; i++){
+            maxSum += arr[i];
+           }
+        } 
+        else{
+            for(int i = 0; i < k; i++)
+                maxSum += arr[i];
+            currSum = maxSum;
+            int low = 0;
+            for(int i = k ; i < arr.length + k - 1; i++){
+                int j = i % (arr.length);
+                currSum = currSum - arr[low] + arr[j];
+                low++;
+                if(currSum > maxSum) maxSum = currSum;
+            }
+        }
+        return maxSum;
+    }
+}
