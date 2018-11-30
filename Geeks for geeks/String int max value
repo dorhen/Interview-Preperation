@@ -1,24 +1,27 @@
+/*package whatever //do not write package name here */
+
 import java.util.*;
 import java.lang.*;
 import java.io.*;
 
 class GFG {
 	public static void main (String[] args) {
-		Scanner scan = new Scanner(system.in);
+		Scanner scan = new Scanner(System.in);
 		int num = scan.nextInt();
+		scan.nextLine();
 		for(int i = 0; i < num; i++){
 		    String toCheck = scan.nextLine();
 		    System.out.println(maxVal(toCheck));
 		}
 	}
 	
-	public static int maxVal(String s){
-	    int currentResult = 0;
-	    int currentDigit = 0;
+	public static long maxVal(String s){
+	    long currentResult = 0;
+	    long currentDigit = 0;
 	    for(int i = 0; i < s.length(); i++){
-	        currentDigit = digitConverter(s.getChar(i));
-	        if(currentResult == 0 || currentResult == 1) currentReuslt += currentDigit;
-	        else if(currentDigit == 1) currentResult += currenDigit;
+	        currentDigit = digitConverter(s.charAt(i));
+	        if(currentResult == 0 || currentResult == 1) currentResult += currentDigit;
+	        else if(currentDigit == 1) currentResult += currentDigit;
 	        else if(currentDigit > 1) currentResult *= currentDigit;
 	    }
 	    
