@@ -3,7 +3,7 @@ public class Klargest {
 	
 	public static void main(String[] args) {
 		int[] arr = {3,2,5,4,7,8,9,15,14,11};
-		System.out.println(dSelect(arr,5));
+		System.out.println(dSelect(arr,6));
 	}
 	
 	public static int dSelect(int[] arr, int k){
@@ -11,7 +11,7 @@ public class Klargest {
 	    int i = partition(arr,rand,0,arr.length-1);
 	    while(i != k - 1){
 	        if(i < k - 1) {
-	            rand = (int)(i+1+Math.random()*arr.length);
+	            rand = (int)(i+1+Math.random()*(arr.length-i-1));
 	            i = partition(arr,rand,i+1,arr.length-1);
 	        }
 	        else if(i > k - 1){
