@@ -1,0 +1,43 @@
+import java.util.Arrays;
+
+public class MergeInplace {
+
+	public static void main(String[] args) {
+		Integer[] arr1 = {5,13,17,null,null,null,null,null};
+		Integer[] arr2 = {3,7,11,19};
+		merge(arr1,arr2);
+		System.out.println(Arrays.toString(arr1));
+		
+	}
+	public static void merge(Integer[] arr1, Integer[] arr2){
+	    int high = arr1.length-1;
+	    int low = 0;
+	    while(arr1[low] != null){
+	        low++;
+	    }
+	    low--;
+	    while(low > -1){
+	        swap(arr1,low--,high--);
+	    }
+	    high++;
+	    low = 0;
+	    int low1 = 0;
+	    while(high < arr1.length || low < arr2.length){
+	        if(low == arr2.length)arr1[low1++] = arr1[high++];
+	        else if(high == arr1.length)arr1[low1++] = arr2[low++];
+	        else{
+	            arr1[low1++] = arr1[high] < arr2[low] ? arr1[high++] : arr2[low++];
+	        }
+	    }
+	    while(low1 < arr1.length) {
+	    	arr1[low1++] = null;
+	    }
+	}
+
+
+	public static void swap(Integer[] arr, int i1, int i2){
+	    int temp = arr[i1];
+	    arr[i1] = arr[i2];
+	    arr[i2] = temp;
+	}
+}
