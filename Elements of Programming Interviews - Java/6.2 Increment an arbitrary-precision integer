@@ -1,0 +1,12 @@
+public static void IncrementByOne(int[] arr){
+    boolean carry = true;
+    for(int i = arr.length-1; i >=0 && carry; i--){
+        if(arr[i] < 9){
+            arr[i]++;
+            carry = false;
+        }
+        else{
+            arr[i] = 0;
+        }
+    }
+}
